@@ -4,8 +4,11 @@ import localFont from 'next/font/local';
 import RootLayout from './components/RootLayout';
 
 export const metadata: Metadata = {
-   title: 'Studio_Clone',
-   description: 'Studio website clone',
+   title:{
+      template: "studio_clone",
+      default: "Studio_Clone - An award winner website clone"
+   },
+   description: 'Studio_Clone is an award winner website clone',
 };
 const mona = localFont({ src: './fonts/Mona-Sans.woff2' });
 

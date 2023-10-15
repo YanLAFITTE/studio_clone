@@ -1,24 +1,39 @@
 'use client';
 import { useReducedMotion, MotionConfig, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import React, { ReactNode, useEffect, useId, useRef, useState } from 'react';
+import React, {
+   ElementType,
+   ReactNode,
+   useEffect,
+   useId,
+   useRef,
+   useState,
+} from 'react';
 import Container from './Container';
 import Logo from './Logo';
 import Link from 'next/link';
+import { HiMenuAlt4 } from 'react-icons/hi';
+import { IoMdClose } from 'react-icons/io';
+import Button from './Button';
+import clsx from 'clsx';
 
-interface MyProps {
+interface ChildrenProps {
    children?: ReactNode;
 }
 
-// Define the type for the Header component's props
 interface HeaderProps {
-    panelId: string;
-    invert?: boolean;
-    icon: ReactNode;
-    expanded: boolean;
-    onToggle: () => void;
-    toggleRef: React.RefObject<any>; // Adjust the type as needed
- }
+   panelId: string;
+   invert?: boolean;
+   icon: ElementType;
+   expanded: boolean;
+   onToggle: () => void;
+   toggleRef: React.RefObject<HTMLButtonElement | null>;
+}
+
+interface NavigationItemProps {
+   href: string;
+   children: React.ReactNode;
+}
 
 const Header = ({
    panelId,
@@ -29,22 +44,87 @@ const Header = ({
    toggleRef,
 }: HeaderProps) => {
    return (
-      <Container >
-         <div>
-            <Link href={"/"} aria-label='Home'>
-               <Logo  >Studio_Clone</Logo>
+      <Container className=''>
+         <div className='flex items-center justify-between'>
+            <Link href={'/'} aria-label='Home'>
+               <Logo invert={invert} className='' href=''>
+                  Studio_Clone
+               </Logo>
             </Link>
+            <div className='flex items-center gap-x-8'>
+               <Button href={'/contact'} invert={invert} className=''>
+                  Contact us
+               </Button>
+               <button
+                  ref={toggleRef as React.RefObject<HTMLButtonElement>}
+                  type='button'
+                  onClick={onToggle}
+                  aria-expanded={expanded}
+                  aria-controls={panelId}
+                  className={clsx(
+                     'group -m-2.5 rounded-full p-2.5 transition',
+                     invert ? 'hover:bg-white/10' : ' hover:bg-neutral-950/10'
+                  )}
+                  aria-label='Toggle navigation'
+               >
+                  <Icon
+                     className={clsx(
+                        'h-6 w-6',
+                        invert
+                           ? 'fill-white group-hover:fill-neutral-200'
+                           : 'fill-neutral-950 group-hover:fill-neutral-700'
+                     )}
+                  />
+               </button>
+            </div>
          </div>
       </Container>
    );
 };
 
-const RootLayoutInner = ({ children }: MyProps) => {
+const NavigationRow = ({ children }: ChildrenProps) => {
+   return (
+      <div className='even:mt-px sm:bg-neutral-950'>
+         <Container>
+            <div className='grid grid-cols-1 sm:grid-cols-2'>{children}</div>
+         </Container>
+      </div>
+   );
+};
+
+const NavigationItem = ({ href, children }: NavigationItemProps) => {
+   return (
+      <Link
+         href={href}
+         className='group relative isolate -mx-6 bg-neutral-950 px-6 py-10 even:mt-px sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-1 sm:even:border-neutral-800 sm:even:pl-16'
+      >
+         {children}
+         <span className='absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-0 transition group-odd:right-0 group-even:left-0 group-hover:opacity-100' />
+      </Link>
+   );
+};
+
+const Navigation = () => {
+   return (
+      <nav className='mt-px font-display text-5xl font-medium tracking-tight text-white'>
+         <NavigationRow>
+            <NavigationItem href={'/work'}>Our Work</NavigationItem>
+            <NavigationItem href={'/about'}>About us</NavigationItem>
+         </NavigationRow>
+         <NavigationRow>
+            <NavigationItem href={'/process'}>Our Process</NavigationItem>
+            <NavigationItem href={'/blog'}>Blog</NavigationItem>
+         </NavigationRow>
+      </nav>
+   );
+};
+
+const RootLayoutInner = ({ children }: ChildrenProps) => {
    const panelId = useId();
    const [expanded, setExpanded] = useState(false);
-   const openRef = useRef();
-   const closeRef = useRef();
-   const navRef = useRef();
+   const openRef = useRef<HTMLButtonElement | null>(null);
+   const closeRef = useRef<HTMLButtonElement | null>(null);
+   const navRef = useRef<HTMLDivElement | null>(null);
    const shouldReduceMotion = useReducedMotion();
    useEffect(() => {
       function onClick(event: MouseEvent) {
@@ -73,14 +153,53 @@ const RootLayoutInner = ({ children }: MyProps) => {
                aria-hidden={expanded ? 'true' : undefined}
                data-inert={expanded ? '' : undefined}
             >
-                <Header/>
+               {/* Header */}
+               <Header
+                  panelId={panelId}
+                  icon={HiMenuAlt4}
+                  toggleRef={openRef}
+                  expanded={expanded}
+                  onToggle={() => {
+                     setExpanded((expanded) => !expanded);
+                     window.setTimeout(() =>
+                        closeRef.current?.focus({ preventScroll: true })
+                     );
+                  }}
+               />
             </div>
+            <motion.div
+               layout
+               id={panelId}
+               style={{ height: expanded ? 'auto' : '0.5rem' }}
+               className='relative z-50 overflow-hidden bg-neutral-950 pt-2'
+               aria-hidden={expanded ? undefined : 'true'}
+               data-inert={expanded ? undefined : ''}
+            >
+               <motion.div layout className='bg-neutral-800'>
+                  <div ref={navRef} className='bg-neutral-950 pb-16 pt-14'>
+                     <Header
+                        invert
+                        panelId={panelId}
+                        icon={IoMdClose}
+                        toggleRef={openRef}
+                        expanded={expanded}
+                        onToggle={() => {
+                           setExpanded((expanded) => !expanded);
+                           window.setTimeout(() =>
+                              closeRef.current?.focus({ preventScroll: true })
+                           );
+                        }}
+                     />
+                  </div>
+                  <Navigation />
+               </motion.div>
+            </motion.div>
          </header>
       </MotionConfig>
    );
 };
 
-const RootLayout = ({ children }: MyProps) => {
+const RootLayout = ({ children }: ChildrenProps) => {
    const pathName = usePathname();
    return <RootLayoutInner key={pathName}>{children}</RootLayoutInner>;
 };

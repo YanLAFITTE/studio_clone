@@ -2,7 +2,14 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 
-const Logo = ({ invert, href, className, children, ...props }) => {
+interface LogoProps {
+   invert: boolean;
+   href?: string;
+   className?: string;
+   children: React.ReactNode;
+}
+
+const Logo = ({ invert, href, className, children, ...props }: LogoProps) => {
    className = clsx(
       className,
       'black',
