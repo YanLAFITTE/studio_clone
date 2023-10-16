@@ -1,11 +1,19 @@
 import React from 'react';
-import Container from '../components/Container';
+import PageIntro from '../components/PageIntro';
 
 const WorkPage = () => {
    return (
-      <Container className='mt-24'>
-         <div className='text-black'>WorkPage</div>
-      </Container>
+      <PageIntro
+         eyebrow='Our work'
+         title='Proven solutions for real-world problems.'
+         centered={false}
+      >
+         <p>
+            We believe in efficiency and maximizing our resources to provide the
+            best value to our clients. The primary way we do that is by re-using
+            the same five projects we’ve been developing for the past decade.
+         </p>
+      </PageIntro>
    );
 };
 
