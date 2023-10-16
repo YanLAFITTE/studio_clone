@@ -14,7 +14,7 @@ interface SocialMediaProps {
    invert: boolean;
 }
 
-const SocialMediaProfiles = [
+export const SocialMediaProfiles = [
    {
       title: 'Facebook',
       href: 'https://www.facebook.com',
