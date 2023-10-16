@@ -54,7 +54,7 @@ const Header = ({
                   Studio_Clone
                </Logo>
             </Link>
-            <div className='flex items-center gap-x-8'>
+            <div className='flex items-center gap-x-4 sm:gap-x-8'>
                <Button href={'/contact'} invert={invert} className=''>
                   Contact us
                </Button>
