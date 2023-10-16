@@ -1,11 +1,13 @@
-import React, { HTMLProps } from 'react';
+import React, { SVGProps } from 'react';
 import Container from './Container';
 import Fadein from './Fadein';
 import FooterNavigation from './FooterNavigation';
 import Logo from './Logo';
 import Link from 'next/link';
 
-const ArrowIcon = (props) => {
+interface ArrowIconProps extends SVGProps<SVGSVGElement> {}
+
+const ArrowIcon = (props: ArrowIconProps) => {
    return (
       <svg viewBox='0 0 16 6' aria-hidden='true' {...props}>
          <path
@@ -60,18 +62,16 @@ const Footer = () => {
                   <NewsletterForm />
                </div>
             </div>
-               <div className='mb-20 mt-24 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12'>
-                  <Link href={'/'} aria-label='Home'>
-                     <Logo className='h-8 ' 
-                     fillOnHover
-                     >
-                        Studio_Clone
-                     </Logo>
-                  </Link>
-                  <p className='text-sm text-neutral-700'>
-                     © Studio Agency Inc. {new Date().getFullYear()}
-                  </p>
-               </div>
+            <div className='mb-20 mt-24 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12'>
+               <Link href={'/'} aria-label='Home'>
+                  <Logo className='h-8 ' invert={false}>
+                     Studio_Clone
+                  </Logo>
+               </Link>
+               <p className='text-sm text-neutral-700'>
+                  © Studio Agency Inc. {new Date().getFullYear()}
+               </p>
+            </div>
          </Fadein>
       </Container>
    );
