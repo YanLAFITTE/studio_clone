@@ -6,9 +6,9 @@ import RootLayout from './components/RootLayout';
 export const metadata: Metadata = {
    title: {
       template: 'studio_clone',
-      default: 'Studio_Clone - An award winner website clone',
+      default: 'Studio_Clone - A studio website clone',
    },
-   description: 'Studio_Clone is an award winner website clone',
+   description: 'Studio_Clone is a studio website clone',
 };
 const mona = localFont({ src: './fonts/Mona-Sans.woff2' });
 
