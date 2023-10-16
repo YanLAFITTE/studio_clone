@@ -1,11 +1,19 @@
 import React from 'react';
 import Container from '../components/Container';
+import PageIntro from '../components/PageIntro';
 
 const BlogPage = () => {
    return (
-      <Container className='mt-24'>
-         <div className='text-black'>BlogPage</div>
-      </Container>
+      <PageIntro
+         eyebrow='Blog'
+         title='The latest articles and news'
+         centered={false}
+      >
+         <p>
+            Stay up-to-date with the latest industry news as our marketing teams
+            finds new ways to re-purpose old CSS tricks articles.
+         </p>
+      </PageIntro>
    );
 };
 
