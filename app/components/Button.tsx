@@ -3,10 +3,11 @@ import clsx from 'clsx';
 import Link from 'next/link';
 
 interface ButtonProps {
-   invert: boolean;
+   invert?: boolean;
    href?: string;
    className?: string;
    children: React.ReactNode;
+   type?: 'button' | 'submit' | 'reset' | undefined;
 }
 
 const Button = ({
@@ -14,6 +15,7 @@ const Button = ({
    href,
    className,
    children,
+   type,
    ...props
 }: ButtonProps) => {
    className = clsx(
@@ -33,7 +35,7 @@ const Button = ({
       );
    }
    return (
-      <button className={className} {...props}>
+      <button type={type} className={className} {...props}>
          {inner}
       </button>
    );

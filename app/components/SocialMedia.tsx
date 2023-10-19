@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 interface SocialMediaProps {
    className: string;
-   invert: boolean;
+   invert?: boolean;
 }
 
 export const SocialMediaProfiles = [
