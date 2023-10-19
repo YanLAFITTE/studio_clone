@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { HTMLProps, useId } from 'react';
+import React, { useId } from 'react';
 import Image, { StaticImageData } from 'next/image';
 
 interface Shape {
@@ -8,9 +8,9 @@ interface Shape {
    path: string;
 }
 
-interface StylizedImageProps {
+export interface StylizedImageProps {
    shape?: number;
-   className: string;
+   className?: string;
    src: StaticImageData;
    sizes: string;
 }
@@ -42,6 +42,7 @@ const StylizedImage: React.FC<StylizedImageProps> = ({
    const id = useId();
    const selectedShape = shapes[shape] as Shape;
    const { width, height, path } = selectedShape;
+
    return (
       <div
          className={clsx(
@@ -49,7 +50,6 @@ const StylizedImage: React.FC<StylizedImageProps> = ({
             'relative flex aspect-[719/680] w-full grayscale pl-5'
          )}
       >
-         {' '}
          <svg viewBox={`0 0 ${width} ${height}`} fill='none' className='h-full'>
             <g clipPath={`url(#${id}-clip)`} className='group'>
                <g className='origin-center scale-100 transition duration-500 motion-safe:group-hover:scale-105'>
