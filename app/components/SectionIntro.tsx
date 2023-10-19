@@ -11,7 +11,10 @@ interface SectionIntroProps {
    invert?: boolean;
 }
 
-type Props = SectionIntroProps & HTMLProps<HTMLDivElement>;
+type Props = SectionIntroProps &
+   HTMLProps<HTMLDivElement> & {
+      as?: React.ElementType<any> | string | undefined;
+   };
 
 const SectionIntro = ({
    eyebrow,
@@ -24,8 +27,8 @@ const SectionIntro = ({
    const { as, ...containerProps } = props;
 
    return (
-      <Container {...containerProps}>
-         <FadeIn className='max-w-3xl '>
+      <Container as={as} {...containerProps}>
+         <FadeIn className='max-w-2xl '>
             <h2>
                {eyebrow && (
                   <>
@@ -45,7 +48,7 @@ const SectionIntro = ({
                      'block font-display tracking-tight [text-wrap:balance]',
                      smaller
                         ? 'text-2xl font-semibold'
-                        : 'text-4xl font-medium sm:text-5xl',
+                        : 'text-[2rem] font-medium sm:text-[2.5rem] leading-[2.5rem] lg:leading-[3rem]',
                      invert ? 'text-white' : 'text-neutral-950'
                   )}
                >
@@ -55,7 +58,7 @@ const SectionIntro = ({
             {children && (
                <div
                   className={clsx(
-                     'mt-6 text-xl',
+                     'mt-6 text-xl leading-[2rem]',
                      invert ? 'text-neutral-300' : 'text-neutral-600'
                   )}
                >

@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 
 interface ContainerProps {
-   as?: React.ElementType;
+   as?: React.ElementType<any> | string | undefined;
    className?: string;
    children: React.ReactNode;
 }

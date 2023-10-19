@@ -47,15 +47,15 @@ const Header = ({
    toggleRef,
 }: HeaderProps) => {
    return (
-      <Container className=''>
+      <Container >
          <div className='flex items-center justify-between'>
             <Link href={'/'} aria-label='Home'>
-               <Logo invert={invert} className='' href=''>
+               <Logo invert={invert} >
                   Studio_Clone
                </Logo>
             </Link>
             <div className='flex items-center gap-x-4 sm:gap-x-8'>
-               <Button href={'/contact'} invert={invert} className=''>
+               <Button href={'/contact'} invert={invert}>
                   Contact us
                </Button>
                <button

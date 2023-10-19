@@ -46,7 +46,7 @@ const StylizedImage: React.FC<StylizedImageProps> = ({
       <div
          className={clsx(
             className,
-            'relative flex aspect-[719/680] w-full grayscale'
+            'relative flex aspect-[719/680] w-full grayscale pl-5'
          )}
       >
          {' '}

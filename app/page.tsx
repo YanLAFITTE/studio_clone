@@ -4,13 +4,14 @@ import Testimonials from './components/Testimonials';
 import Services from './components/Services';
 import Clients from './components/clients';
 import logoPhobiaDark from './images/clients/phobia/logo-dark.svg';
+import ContactSection from './components/ContactSection';
 
 export default function Home() {
    return (
-      <main className='text-black'>
-         <Container className='mt-24 sm:mt-64'>
-            <FadeIn className='max-w-3xl'>
-               <h1 className='font-display text-5xl  font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl'>
+      <div className='text-black'>
+         <Container className='mt-24 sm:mt-32 lg:mt-40'>
+            <FadeIn className='max-w-3xl '>
+               <h1 className='font-display text-[2.5rem] leading-[3rem] sm:leading-[4.5rem]  font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-[4rem]'>
                   Make your online presence a reality with us!
                </h1>
                <p className='mt-6 text-xl text-neutral-600'>
@@ -30,6 +31,7 @@ export default function Home() {
             of those annoying permission dialogs.
          </Testimonials>
          <Services />
-      </main>
+         <ContactSection />
+      </div>
    );
 }
