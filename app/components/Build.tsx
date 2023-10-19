@@ -3,7 +3,7 @@ import Section from './Section';
 import imageLaptop from '../images/laptop.jpg';
 import { StaticImageData } from 'next/image';
 import { TagList, TagListItem } from './TagList';
-import Blockquote from './Blockquote';
+// import Blockquote from './Blockquote';
 
 const Discover = () => {
    return (
@@ -35,13 +35,13 @@ const Discover = () => {
                   dissuades clients from asking for changes.
                </p>
             </div>
-            <Blockquote
+            {/* <Blockquote
                author={{ name: 'Debra Fiscal', role: 'CEO of Unseal' }}
                className='mt-12'
             >
                Studio_clone were so regular with their progress updates we
                almost began to think they were automated!
-            </Blockquote>
+            </Blockquote> */}
          </Section>
       </div>
    );
