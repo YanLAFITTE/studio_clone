@@ -3,6 +3,8 @@ import PageIntro from '../components/PageIntro';
 import ContactSection from '../components/ContactSection';
 import Discover from '../components/Discover';
 import Build from '../components/Build';
+import Deliver from '../components/Deliver';
+import Values from '../components/Values';
 
 const ProcessPage = () => {
    return (
@@ -17,10 +19,11 @@ const ProcessPage = () => {
          </PageIntro>
          <div className='mt-24 space-y-24 [counter-reset:section] sm:mt-32 sm:space-y-32 lg:mt-40 lg:space-y-40'>
             <Discover />
-            <Build/>
-            {/* Deliver */}
+            <Build />
+            <Deliver />
          </div>
-         {/* Values */}
+         <Values />
+
          <ContactSection />
       </>
    );

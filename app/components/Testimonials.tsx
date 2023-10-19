@@ -14,7 +14,7 @@ const Testimonials = ({ children, client, className }: TestimonialsProps) => {
    return (
       <div
          className={clsx(
-            'relative isolate bg-gradient-to-r from-white via-neutral-50 to-white py-16 sm:py-28 md:py-32 ',
+            'relative isolate rounded-t-4xl bg-gradient-to-b from-neutral-50 py-16 sm:py-28 md:py-32 ',
             className
          )}
       >
